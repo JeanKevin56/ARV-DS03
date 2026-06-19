@@ -102,7 +102,7 @@ Le niveau Must correspond au minimum attendu pour considérer le projet comme fo
 
 À ce niveau, les étudiants doivent livrer une première chaîne complète, même simple. L’objectif n’est pas encore d’obtenir le meilleur score possible, mais de prouver que le système fonctionne de bout en bout : une image entre, une analyse est produite, la sortie est structurée, les résultats sont sauvegardés, et les limites sont clairement affichées.
 
-**Fonctionnalités attendues :***
+**Fonctionnalités attendues :**
 
 * mettre en place un dépôt Git propre, avec une structure claire et documentée ;
 * préparer un petit jeu de données initial, synthétique ou public autorisé ;
