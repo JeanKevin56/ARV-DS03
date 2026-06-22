@@ -17,3 +17,9 @@ assets/
 
 # Local duplicate; the shareable PDF lives in docs/appel_offre.pdf
 /appel_offre.pdf
+stage_2_test_images/*
+stage_2_train_images/*
+stage_2_detailed_class_info.csv
+stage_2_sample_submission.csv
+stage_2_train_labels.csv
+GCP Credits Request Link - RSNA.txt
