@@ -1,14 +1,12 @@
 # Protocole d'évaluation
-> **Author :** Badr TAJINI 
-> **Solution Delivery - filière Data** 
->  **Année académique :** 2025-2026
+
 ## Jeux de cas
 
-- `smoke` : 20 images pour vérifier la chaîne.
-- `dev` : 100 à 150 cas si un vrai dataset est utilisé.
-- `final` : 20 à 30 cas commentés pour la soutenance.
+- `smoke` : ~20 images RSNA pour vérifier la chaîne de bout en bout.
+- `dev` : 100 à 300 cas (voir échantillons d'évaluation dans les notebooks 01/04/05).
+- `final` : 20 à 30 cas commentés pour la soutenance (registre d'erreurs, `eval/error_register_template.csv`).
 
-Le jeu synthétique fourni sert uniquement à valider le pipeline logiciel : chargement, inférence jouet, JSON, logs, métriques et garde-fous. Un score parfait sur ce jeu ne constitue pas une performance médicale.
+Les métriques par notebook (accuracy, macro-F1, mAP, IoU, accord de localisation par quadrant) sont calculées et affichées directement dans chaque notebook — voir en particulier les sections d'évaluation de `notebooks/02_yolo_training.ipynb` (mAP@50, mAP@50-95), `notebooks/04_maira2_alternative_pipeline.ipynb` (classification + accord de localisation) et `notebooks/05_gemma4_e2b_qlora_classification_bonus.ipynb` (accuracy, accord de quadrant).
 
 ## Métriques minimales
 
@@ -42,7 +40,7 @@ Avant toute démonstration, le dépôt doit passer un contrôle court :
 
 ```bash
 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest -q
-python eval/run_evaluation.py --mode toy --out-dir /tmp/assistant-radio-eval --db-path /tmp/assistant-radio-evidence.sqlite
+python -m compileall -q app tests
 ```
 
-Ce test ne remplace pas l'analyse d'erreurs. Il vérifie seulement que le dépôt est exécutable, que les avertissements sont présents et que les sorties restent structurées.
+Ce test ne remplace pas l'analyse d'erreurs. Il vérifie seulement que le dépôt est structuré correctement (notebooks valides, prompts présents, avertissement non clinique présent) et que `app/app.py` compile.

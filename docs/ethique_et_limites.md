@@ -1,7 +1,5 @@
 # Éthique, sécurité et limites
-> **Author :** Badr TAJINI 
-> **Solution Delivery - filière Data** 
->  **Année académique :** 2025-2026
+
 ## Ligne rouge
 
 Ce dépôt est un support pédagogique. Il ne doit pas être utilisé pour poser un diagnostic, trier des patients, recommander un traitement ou remplacer un professionnel qualifié.

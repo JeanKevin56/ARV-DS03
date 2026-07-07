@@ -1,21 +1,23 @@
 # Données
 
-Ce dossier contient un jeu **synthétique jouet** destiné à tester l'architecture, les logs, les métriques et l'interface. Il ne s'agit pas d'un dataset médical réel.
+## Dataset d'entraînement / évaluation
 
-Pour un vrai projet, utiliser un dataset autorisé comme RSNA Pneumonia, CheXpert, MIMIC-CXR ou NIH ChestXray, en respectant les licences et les conditions d'accès.
+Le projet utilise le **RSNA Pneumonia Detection Challenge** (Kaggle), radiographies thoraciques frontales au format DICOM avec annotations de boîtes englobantes. Dataset externe, sous licence propre : il n'est **pas redistribué** dans ce dépôt (voir `.gitignore` : `stage_2_*`). Pour reproduire les notebooks, ajouter le dataset directement sur Kaggle (Add Input → *RSNA Pneumonia Detection Challenge*) ou le télécharger depuis la compétition.
 
-## `synthetic_cases.csv`
+## `maira2_interface.csv`
 
-Colonnes :
+Banque d'images pré-analysées par la piste MAIRA-2 + GPT-OSS (générée par `notebooks/04_maira2_alternative_pipeline.ipynb`), consommée directement par le Mode 2 de `app/app.py`. Colonnes principales :
 
-- `case_id`
-- `image_path`
-- `source`
-- `label`
-- `split`
-- `quality`
-- `notes`
+- `patientId` : identifiant de l'image RSNA.
+- `classe_finale`, `classe_regles`, `classe_LLM` : classe retenue, classe par règles (mots-clés), classe par GPT-OSS.
+- `boites_predites`, `boites_reelles` : boîtes MAIRA-2 et vérité terrain RSNA, en JSON, pixels sur une image 1024×1024.
+- `ref_size` : taille de référence des boîtes.
+- `rapport_maira` : rapport radiologique brut généré par MAIRA-2.
 
-## Images synthétiques
+## Poids YOLO (`best.pt`)
 
-Les images dans `sample_images/` imitent grossièrement une radiographie thoracique uniquement pour vérifier les flux de code. Elles ne doivent pas être utilisées pour évaluer une performance médicale.
+Non versionné (trop volumineux, voir `.gitignore`). Produit par `notebooks/02_yolo_training.ipynb` sur Kaggle, à télécharger et pointer depuis la barre latérale de `app/app.py`.
+
+## Modèle MedGemma (Ollama)
+
+Le Mode 1 de l'app appelle MedGemma via un serveur [Ollama](https://ollama.com) local (`ollama pull <modele>`, voir `README.md`). Aucun poids n'est stocké dans ce dépôt.
